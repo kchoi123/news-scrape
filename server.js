@@ -6,7 +6,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Requiring the models folder
-var db = require("./models");
+var db = require("./controller/index");
 
 // Server is using port 8080
 var PORT = 8080;
