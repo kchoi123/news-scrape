@@ -1,11 +1,14 @@
+// Dependencies
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
+// Requiring the models folder
 var db = require("./models");
 
+// Server is using port 8080
 var PORT = 8080;
 
 // Creating app variable to store express
