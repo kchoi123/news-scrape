@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Scrape</title>
+    <title>Notes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
 <body>
-
     <center>
         <div>
             <a href="/articles">All Articles</a> |
@@ -20,33 +19,13 @@
         </div>
     </center>
 
-    <h1>
-        <center>News Scraper</center>
-    </h1>
-    <br>
     <div>
-        <center>
-            <button type="button" class="btn btn-success" id="scrape" action="/scrape">Scrape Articles</button>
-            <button type="button" class="btn btn-success" id="clear" action="/clear">Clear Articles</button>
-            <button type="button" class="btn btn-success" id="saved" action="/saved">Saved Articles</button>
-            <button type="button" class="btn btn-success" id="allNotes" action="/allNotes">See Notes</button>
-        </center>
-    </div>
-    <br>
+            <center>
+                <button type="button" class="btn btn-success" action="/">HOME</button>
+            </center>
+        </div>
 
-    <div id="wrapper">
-        <center>
-            <h5>Instruction: </h5><i>This application will scrape new articles. You will have the options to save the
-                article and create notes to that article. Use the buttons above to scrape some articles or clear your
-                articles. There is also the ability to save your articles and select the article to leave
-                comments.</i>
-        </center>
-        <hr>
-        <div id="articles"></div>
-        <div id="notes"></div>
-    </div>
-
-
+    <div id="notes"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
