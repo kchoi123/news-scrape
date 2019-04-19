@@ -37,6 +37,10 @@ textarea {
   font-size: 18px;
 }
 
+#clear, #scrape, #saved, #allNotes {
+  color: white;
+}
+
 hr {
   border: dotted dashed solid double;
 }

@@ -8,6 +8,10 @@ var path = require("path");
 var db = require("../models");
 
 module.exports = function (app) {
+    app.get("/", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+    });
+
     // A GET route for scraping the echoJS website
     app.get("/scrape", function (req, res) {
         // First, we grab the body of the html with axios
@@ -105,8 +109,8 @@ module.exports = function (app) {
             .catch(function (err) {
                 res.json(err);
             })
-
-        res.sendFile(path.join(__dirname, "../public/notes.html"));
+            res.redirect("../notes.html")
+        // res.sendFile(path.join(__dirname, "../public/notes.html"));
     })
 
     app.get("/clear", function (req, res) {
