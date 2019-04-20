@@ -8,23 +8,18 @@ var path = require("path");
 var db = require("../models");
 
 module.exports = function (app) {
+
     app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/index.html"));
     });
 
-    // A GET route for scraping the echoJS website
     app.get("/scrape", function (req, res) {
-        // First, we grab the body of the html with axios
-        axios.get("http://www.echojs.com/").then(function (response) {
-            // Then, we load that into cheerio and save it to $ for a shorthand selector
+        axios.get("https://news.ycombinator.com/").then(function (response) {
             var $ = cheerio.load(response.data);
 
-            // Now, we grab every h2 within an article tag, and do the following:
-            $("article h2").each(function (i, element) {
-                // Save an empty result object
+            $(".title").each(function (i, element) {
                 var result = {};
 
-                // Add the text and href of every link, and save them as properties of the result object
                 result.title = $(this)
                     .children("a")
                     .text();
@@ -32,19 +27,15 @@ module.exports = function (app) {
                     .children("a")
                     .attr("href");
 
-                // Create a new Article using the `result` object built from scraping
                 db.Article.create(result)
                     .then(function (dbArticle) {
-                        // View the added result in the console
                         console.log(dbArticle);
                     })
                     .catch(function (err) {
-                        // If an error occurred, log it
                         console.log(err);
                     });
             });
 
-            // Send a message to the client
             res.send("/");
         });
     });
@@ -99,9 +90,7 @@ module.exports = function (app) {
             });
     });
 
-    app.get("/allNotes", function (req, res) {
-        console.log(db.Notes);
-        
+    app.get("/notes", function (req, res) {
         db.Note.find({})
             .then(function (dbNotes) {
                 res.json(dbNotes);
@@ -109,8 +98,11 @@ module.exports = function (app) {
             .catch(function (err) {
                 res.json(err);
             })
-            res.redirect("../notes.html")
-        // res.sendFile(path.join(__dirname, "../public/notes.html"));
+    })
+
+    app.get("/allNotes", function(req, res) {
+        console.log(db.Notes);
+        res.redirect("../notes.html")
     })
 
     app.get("/clear", function (req, res) {

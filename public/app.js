@@ -7,6 +7,14 @@ $.getJSON("/articles", function (data) {
     }
 });
 
+$.getJSON("/notes", function (data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        // Creating p tags into our article id
+        $("#allNotesField").append("<p data-id='" + data[i]._id + "'>" + data[i].body + "<br /></p><hr>");
+    }
+});
+
 // P tag is created above after finding all articles and appending them to the DOM
 $(document).on("click", "p", function () {
     $("#notes").empty();
@@ -88,4 +96,12 @@ $(document).on("click", "#saved", function() {
 
 $(document).on("click", "#saveArticle", function() {
     console.log("Save an article was clicked!");
+})
+
+$(document).on("click", "#allNotesHome", function() {
+    
+})
+
+$(document).on("click", "#home", function() {
+    window.location = "/";
 })
